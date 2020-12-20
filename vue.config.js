@@ -104,7 +104,7 @@ const vueConfig = {
       }
     }
   },
-  outputDir: '/Users/code18/www/localhost/',
+  // outputDir: '/Users/code18/www/localhost/',
   devServer: {
     // development server port 8000
     port: 80,
