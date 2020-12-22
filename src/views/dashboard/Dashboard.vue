@@ -188,23 +188,23 @@
             </span>
             <div>
               <p>
-                <a-button icon="windows" class="button-color-volcano" block @click="$router.push({path: '/tutorials/windows'})">
+                <a-button icon="windows" class="button-color-volcano" style="color: white;font-weight: bold" block @click="$router.push({path: '/tutorials/windows'})">
                   Windows
                 </a-button>
               </p>
               <p>
-                <a-button icon="android" class="button-color-dust" block @click="$router.push({path: '/tutorials/android'})">
+                <a-button icon="android" class="button-color-dust" style="color: white;font-weight: bold" block @click="$router.push({path: '/tutorials/android'})">
                   Android
                 </a-button>
               </p>
               <p>
-                <a-button block class="button-color-purple" @click="$router.push({path: '/tutorials/mac'})">
+                <a-button block class="button-color-purple" style="color: white;font-weight: bold" @click="$router.push({path: '/tutorials/mac'})">
                   <my-icon type="icon-mac"></my-icon>
                   Mac
                 </a-button>
               </p>
               <p>
-                <a-button icon="apple" class="button-color-daybreak" block @click="$router.push({path: '/tutorials/ios'})">
+                <a-button icon="apple" class="button-color-daybreak" style="color: white;font-weight: bold" block @click="$router.push({path: '/tutorials/ios'})">
                   iOS
                 </a-button>
               </p>
