@@ -100,7 +100,7 @@
           </chart-card>
         </a-col>
 
-        <a-col :xl="14" :md="24" :sm="24" :style="{ marginBottom: '24px' }">
+        <a-col :xl="24" :md="24" :sm="24" :style="{ marginBottom: '24px' }">
           <div v-if="announcement !== null">
             <a-card :loading="loading" :bordered="false" :extra="announcement.time">
               <template slot="title">
@@ -127,7 +127,7 @@
             </a-card>
           </div>
         </a-col>
-        <a-col :xl="10" :md="24" :sm="24">
+        <a-col :xl="12" :md="24" :sm="24">
           <a-card :loading="loading" style="margin-bottom: 24px;height: 250px" :bordered="false">
             <span slot="title">
               <my-icon type="icon-subscription" />
@@ -139,48 +139,53 @@
                   <my-icon type="icon-app" />
                   {{ $t('dashboard.content.appSubs') }}
                 </span>
-                <div class="listContent" v-clipboard:copy="user.subsLink + 'shadowrocket'" v-clipboard:success="onCopy" v-clipboard:error="onError">
-                  <div class="listStyle shadowrocket">
-                    <div class="listIcon">
-                      <my-icon type="icon-shadowrocket" />
-                    </div>
-                    <div class="listText">
-                      <h1>Shadowrocket</h1>
-                    </div>
-                  </div>
-                </div>
-                <div class="listContent" v-clipboard:copy="user.subsLink + 'clash'" v-clipboard:success="onCopy" v-clipboard:error="onError">
-                  <div class="listStyle clash">
-                    <div class="listIcon">
-                      <my-icon type="icon-clash" />
-                    </div>
-                    <div class="listText">
-                      <h1>Clash</h1>
-                    </div>
-                  </div>
-                </div>
-                <div class="listContent" v-clipboard:copy="user.subsLink + 'surge4'" v-clipboard:success="onCopy" v-clipboard:error="onError">
-                  <div class="listStyle surge">
-                    <div class="listIcon">
-                      <my-icon type="icon-surge" />
-                    </div>
-                    <div class="listText">
-                      <h1>Surge</h1>
-                    </div>
-                  </div>
+                <div>
+                  <a-button
+                    class="button-color-volcano"
+                    style="color: white;font-weight: bold;margin-bottom: 10px"
+                    block
+                    v-clipboard:copy="user.subsLink + 'shadowrocket'"
+                    v-clipboard:success="onCopy"
+                    v-clipboard:error="onError"
+                  >
+                    <my-icon type="icon-shadowrocket" />
+                    Shadowrocket
+                  </a-button>
+                  <a-button
+                    class="button-color-dust"
+                    style="color: white;font-weight: bold;margin-bottom: 10px"
+                    block
+                    v-clipboard:copy="user.subsLink + 'clash'"
+                    v-clipboard:success="onCopy"
+                    v-clipboard:error="onError"
+                  >
+                    <my-icon type="icon-clash" />
+                    Clash
+                  </a-button>
+                  <a-button
+                    class="button-color-daybreak"
+                    style="color: white;font-weight: bold;margin-bottom: 10px"
+                    block
+                    v-clipboard:copy="user.subsLink + 'surge4'"
+                    v-clipboard:success="onCopy"
+                    v-clipboard:error="onError"
+                  >
+                    <my-icon type="icon-surge" />
+                    Surge
+                  </a-button>
                 </div>
               </a-tab-pane>
-              <a-tab-pane key="2">
+              <!--  <a-tab-pane key="2">
                 <span slot="tab" style="font-size: 18px;">
                   <my-icon type="icon-common" />
                   {{ $t('dashboard.content.commonSubs') }}
                 </span>
-                Tab 2
-              </a-tab-pane>
+                TODO
+              </a-tab-pane>-->
             </a-tabs>
           </a-card>
         </a-col>
-        <a-col :xl="10" :md="24" :sm="24" :style="{ marginBottom: '24px' }">
+        <a-col :xl="12" :md="24" :sm="24" :style="{ marginBottom: '24px' }">
           <a-card :loading="loading" style="margin-bottom: 24px;height: 250px" :bordered="false">
             <span slot="title">
               <a-icon type="profile" />
