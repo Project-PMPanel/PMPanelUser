@@ -99,6 +99,29 @@ export const asyncRouterMap = [
           }
         ]
       },
+      // ticket
+      {
+        path: '/ticket',
+        name: 'ticket',
+        redirect: '/ticket/index',
+        component: RouteView,
+        meta: { title: 'menu.ticket', keepAlive: false, icon: 'highlight', permission: [ 'user', 'admin' ] },
+        hideChildrenInMenu: true,
+        children: [
+          {
+            path: 'index',
+            name: 'ticketIndex',
+            component: () => import('@/views/ticket/Ticket'),
+            meta: { title: 'menu.ticket', keepAlive: false, icon: 'highlight', permission: [ 'user', 'admin' ] }
+          },
+          {
+            path: '/ticket/detail/:id',
+            name: 'ticketDetail',
+            component: () => import('@/views/ticket/Detail'),
+            meta: { hidden: true, keepAlive: false, permission: [ 'user', 'admin' ] }
+          }
+        ]
+      },
       // account
       {
         path: '/account',

@@ -12,6 +12,7 @@ const locale = {
   'setting.yes': 'yes',
   'setting.no': 'no',
   'setting.confirm': 'confirm',
+  'setting.submit': 'Submit',
   'setting.cancel': 'cancel',
   'setting.change': 'change',
   'setting.money': 'CNY',
@@ -74,6 +75,8 @@ const locale = {
   'menu.tutorials.android': 'Android',
   'menu.tutorials.mac': 'Mac',
   'menu.tutorials.ios': 'iOS',
+  'menu.ticket': 'Ticket',
+  'menu.ticket.detail': 'Ticket Detail',
   'menu.usercenter': 'User Center',
   'menu.usercenter.settings': 'Settings',
   'menu.usercenter.settings.security': 'Security',
@@ -179,6 +182,16 @@ const locale = {
   'result.success.title': 'Success',
 
   'funds.withdraw': 'Withdraw',
+
+  'ticket.title': 'Title',
+  'ticket.time': 'Time',
+  'ticket.status': 'Status',
+  'ticket.operation': 'Operation',
+  'ticket.status.0': 'Waiting',
+  'ticket.status.1': 'Replied',
+  'ticket.status.2': 'Finished',
+  'ticket.detail': 'Detail',
+  'ticket.detail.close': 'Close',
 
   'usercenter.settings.security.changePass': 'Change Password',
   'usercenter.settings.security.changePass.oldPass': 'Old Password',
