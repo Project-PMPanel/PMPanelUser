@@ -111,6 +111,11 @@ export default {
       }
     },
     async submitWithdraw () {
+      if (this.account === undefined || this.account === '' || this.account === null) {
+        const msg = this.$i18n.locale === 'zh-CN' ? '请输入提现账号' : 'Please input account'
+        this.$message.error(msg)
+        return
+      }
       if (this.account !== this.account2) {
         const msg = this.$i18n.locale === 'zh-CN' ? '两次账号输入不一致' : 'The input account is different'
         this.$message.error(msg)
