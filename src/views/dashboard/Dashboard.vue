@@ -17,7 +17,7 @@
       </div>
     </template>
 
-    <div style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
+    <div v-if="user.remainTraffic" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
       {{ this.$i18n.locale === 'zh-CN' ? '流量已不足30%' : 'Low flow' }}
     </div>
     <div>
