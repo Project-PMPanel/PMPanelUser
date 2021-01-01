@@ -73,6 +73,7 @@ export default {
   name: 'Checkout',
   data () {
     return {
+      timer: null,
       type: '',
       id: '',
       user: {},
@@ -219,6 +220,7 @@ export default {
       params.mixedPayAmount = parseFloat(params.mixedPayAmount).toFixed(2)
       console.log(params)
       const result = await payOrder(params)
+      const router = this.$router
       if (result.code === 200) {
         if (result.data.type === 'money') {
           setTimeout(() => {
@@ -227,6 +229,14 @@ export default {
         } else if (result.data.type === 'qr') {
           // 展现二维码
           this.qrcode(result.data.url)
+          // 循环查询订单状态
+          this.timer = setInterval(async function () {
+            const result = await getOrderByTypeAndId(params.type, params.id)
+            console.log(result)
+            if (result.data.order.status === 1) {
+              router.push('/result/success')
+            }
+          }, 1000)
         } else if (result.data.type === 'link') {
           window.location.href = result.data.url
         }
@@ -244,6 +254,7 @@ export default {
     }
   },
   beforeDestroy () {
+    clearTimeout(this.timer)
     if (document.getElementById('qrcode') !== null) {
       console.log(document.getElementById('qrcode'))
       document.getElementById('qrcode').innerHTML = ''
