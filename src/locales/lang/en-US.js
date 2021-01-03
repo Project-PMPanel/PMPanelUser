@@ -132,6 +132,7 @@ const locale = {
   'plan.content.mediaUnlock': 'Media Unlock',
   'plan.content.DirectLine': 'Dedicated line provision',
   'plan.content.doSubscribeWarning': 'The new plan will be activated after the old expiration',
+  'plan.content.doSubscribeWarning2': 'Firstly subscribe the plan, 1st month plan content is calc by time & price',
   'plan.order.title': 'Plan',
   'plan.order.package.title': 'Package',
   'plan.order.name': 'Name',

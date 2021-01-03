@@ -116,18 +116,22 @@
                         </span>
                         <span style="line-height: 30px" v-else>
                           <my-icon type="icon-desc" />
-                          {{ item.extraInfoEnglish }}
+                          <span style="word-break: break-all" :key="i" v-for="(info, i) in item.extraInfoEnglish.split(';')">
+                            <span v-if="i === 0"> {{ info }}</span>
+                            <span v-else style="margin-left: 18px"> {{ info }}</span>
+                            <br>
+                          </span>
                           <br/>
                         </span>
 
                         <div>
-                          <span v-if="currentPlan !== undefined && currentPlan !== null" >
-                            <a-popconfirm :title="$t('plan.content.doSubscribeWarning')" :ok-text="$t('setting.yes')" :cancel-text="$t('setting.no')" @confirm="buyPlan(item.id, month)">
+                          <span>
+                            <a-popconfirm v-if="currentPlan !== undefined && currentPlan !== null" :title="$t('plan.content.doSubscribeWarning')" :ok-text="$t('setting.yes')" :cancel-text="$t('setting.no')" @confirm="buyPlan(item.id, month)">
                               <a-button type="primary" block>{{ $t('plan.content.subscribe') }}</a-button>
                             </a-popconfirm>
-                          </span>
-                          <span v-else>
-                            <a-button type="primary" block @click="buyPlan(item.id, month)">{{ $t('plan.content.subscribe') }}</a-button>
+                            <a-popconfirm v-else :title="$t('plan.content.doSubscribeWarning2')" :ok-text="$t('setting.yes')" :cancel-text="$t('setting.no')" @confirm="buyPlan(item.id, month)">
+                              <a-button type="primary" block>{{ $t('plan.content.subscribe') }}</a-button>
+                            </a-popconfirm>
                           </span>
                         </div>
                       </a-card>

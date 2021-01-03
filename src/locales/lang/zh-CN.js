@@ -133,6 +133,7 @@ const locale = {
   'plan.content.mediaUnlock': '流媒体解锁',
   'plan.content.DirectLine': '专线提供',
   'plan.content.doSubscribeWarning': '新套餐会在旧套餐过期后生效',
+  'plan.content.doSubscribeWarning2': '首次购买套餐,首月套餐内容是按价格与时间比例计算到当月底',
   'plan.order.title': '套餐记录',
   'plan.order.package.title': '流量包记录',
   'plan.order.name': '套餐',
