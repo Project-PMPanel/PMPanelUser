@@ -13,6 +13,10 @@
         </a-col>
         <a-col :sm="24" :md="{span: 12, offset: 6}" :xl="{span: 12, offset: 6}" :style="{ marginBottom: '24px' }">
           <div style="margin: -20px 0 0 30px;">
+            <span>
+              {{ $t('checkout.order.info') }}
+            </span>
+            <br>
             <span v-if="type === 'plan' ">
               {{ $i18n.locale === 'zh-CN' ? order.planDetailsMap.name : order.planDetailsMap.nameEnglish }} - {{ order.expire }}
             </span>
@@ -105,6 +109,9 @@ export default {
       this.config = result.data.config
       const result2 = await getOrderByTypeAndId(this.type, this.id)
       if (result2.code === 200) {
+        if (result2.data.order.status === 1) {
+          this.$router.push('/result/success')
+        }
         this.order = result2.data.order
         this.needPayAmount = this.order.price
         this.loading = false
@@ -221,6 +228,9 @@ export default {
       console.log(params)
       const result = await payOrder(params)
       const router = this.$router
+      if (result.code === 5015) {
+        router.push('/result/success')
+      }
       if (result.code === 200) {
         if (result.data.type === 'money') {
           setTimeout(() => {
@@ -238,7 +248,10 @@ export default {
             }
           }, 1000)
         } else if (result.data.type === 'link') {
-          window.location.href = result.data.url
+          const a = document.createElement('a')
+          a.target = '_blank'
+          a.href = result.data.url
+          a.click()
         }
       }
     },

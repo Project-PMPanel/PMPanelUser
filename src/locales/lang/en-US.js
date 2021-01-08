@@ -174,6 +174,7 @@ const locale = {
   'plan.order.details.userContent.connectors': 'Connects: No limit',
 
   'checkout.order.success': 'Please pay for it immediately',
+  'checkout.order.info': 'Please refresh the page if not direct after paying',
   'checkout.order.choosePayType': 'Please choose a payment',
   'checkout.order.payType.money': 'Balance',
   'checkout.order.payType.alipay': 'Alipay',
