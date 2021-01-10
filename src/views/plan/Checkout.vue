@@ -248,10 +248,7 @@ export default {
             }
           }, 1000)
         } else if (result.data.type === 'link') {
-          const a = document.createElement('a')
-          a.target = '_blank'
-          a.href = result.data.url
-          a.click()
+          window.location.href = result.data.url
         }
       }
     },
