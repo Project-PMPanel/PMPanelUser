@@ -99,7 +99,7 @@ const locale = {
   'dashboard.content.nodeSpeedLimit': 'Speed Limit: ',
   'dashboard.content.nodeSpeedNoLimit': 'Speed Limit : No limit',
   'dashboard.content.invite': 'Invitaton',
-  'dashboard.content.inviteMessage': 'It\'ll change after used',
+  'dashboard.content.inviteMessage': 'After the invited users recharge, you can get rebates',
   'dashboard.content.copyInviteLink': 'Copy',
   'dashboard.content.copyInviteLinkSuccess': 'Copy Successfully',
   'dashboard.content.resetInviteCode': 'Reset',

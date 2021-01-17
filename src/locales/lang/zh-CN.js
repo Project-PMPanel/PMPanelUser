@@ -99,7 +99,7 @@ const locale = {
   'dashboard.content.nodeSpeedLimit': '限速: ',
   'dashboard.content.nodeSpeedNoLimit': '限速 : 无限制',
   'dashboard.content.invite': '邀请好友',
-  'dashboard.content.inviteMessage': '邀请注册后会生成新的邀请链接',
+  'dashboard.content.inviteMessage': '邀请的用户充值后您可获得充值返利',
   'dashboard.content.copyInviteLink': '复制',
   'dashboard.content.copyInviteLinkSuccess': '复制成功',
   'dashboard.content.resetInviteCode': '重置',
