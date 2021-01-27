@@ -23,7 +23,7 @@
               :placeholder="$t('register.email')"
               v-decorator="['email', {rules: [{ required: true, message: $t('register.emailMessage') }], validateTrigger: ['change', 'blur']}]">
               <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-              <a-select slot="addonAfter" :value="emailList[0]" style="width: 130px" @change="onChange">
+              <a-select slot="addonAfter" v-model="emailList[0]" style="width: 130px" @change="onChange">
                 <a-select-option :value="item" :key="index" v-for="(item, index) in emailList" >
                   {{ item }}
                 </a-select-option>
