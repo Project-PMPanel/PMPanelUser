@@ -23,7 +23,7 @@
       {{ this.$i18n.locale === 'zh-CN' ? '即将过期,请尽快购买套餐' : 'The plan will expire soon, please subs a new plan quickly' }}
     </div>
     <div v-if="$moment(user.expireIn).isBefore($moment())" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
-      {{ this.$i18n.locale === 'zh-CN' ? '已过期,请尽快购买套餐' : 'The plan will expire soon, please subs a new plan quickly' }}
+      {{ this.$i18n.locale === 'zh-CN' ? '已过期,请尽快购买套餐' : 'The plan has been expired, please subs a new plan quickly' }}
     </div>
     <div>
       <a-row :gutter="24">
