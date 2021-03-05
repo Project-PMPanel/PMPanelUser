@@ -25,7 +25,7 @@
             <a-input prefix="￥" v-model="amount" suffix="CNY" />
             <br />
             <br />
-            <a-input ref="userNameInput" v-model="account" :placeholder=" $i18n.locale === 'zh-CN' ? '提现账号' : 'Account' ">
+            <a-input ref="userNameInput" v-model="account" :placeholder=" $i18n.locale === 'zh-CN' ? '提现账号(支付宝)' : 'Account(Alipay)' ">
               <my-icon slot="prefix" type="icon-account" />
             </a-input>
             <br/>
