@@ -31,7 +31,7 @@ VMdEditor.use(vuepressTheme)
 Vue.use(VMdEditor)
 
 const MyIcon = Icon.createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2202754_ksq7ntr9iu.js' // 在 iconfont.cn 上生成
+  scriptUrl: '//at.alicdn.com/t/font_2202754_vcbbp2m4oyg.js' // 在 iconfont.cn 上生成
 })
 
 Vue.config.productionTip = false

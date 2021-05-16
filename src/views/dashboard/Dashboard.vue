@@ -136,7 +136,7 @@
           </div>
         </a-col>
         <a-col :xl="12" :md="24" :sm="24">
-          <a-card :loading="loading" style="margin-bottom: 24px;height: 250px" :bordered="false">
+          <a-card :loading="loading" style="margin-bottom: 24px;" :bordered="false">
             <span slot="title">
               <my-icon type="icon-subscription" />
               {{ $t('dashboard.content.subsCenter') }}
@@ -148,6 +148,17 @@
                   {{ $t('dashboard.content.appSubs') }}
                 </span>
                 <div>
+                  <a-button
+                    class="button-color-cyan"
+                    style="color: white;font-weight: bold;margin-bottom: 10px"
+                    block
+                    v-clipboard:copy="user.subsLink + 'v2ray'"
+                    v-clipboard:success="onCopy"
+                    v-clipboard:error="onError"
+                  >
+                    <my-icon type="icon-v2ray" />
+                    V2ray
+                  </a-button>
                   <a-button
                     class="button-color-volcano"
                     style="color: white;font-weight: bold;margin-bottom: 10px"
