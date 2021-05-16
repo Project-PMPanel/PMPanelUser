@@ -161,7 +161,7 @@
                   </a-button>
                   <a-button
                     class="button-color-volcano"
-                    style="color: white;font-weight: bold;margin-bottom: 10px"
+                    style="color: white;font-weight: bold;margin-bottom: 10px;margin-right: 2%; width: 49%"
                     block
                     v-clipboard:copy="user.subsLink + 'shadowrocket'"
                     v-clipboard:success="onCopy"
@@ -169,6 +169,15 @@
                   >
                     <my-icon type="icon-shadowrocket" />
                     Shadowrocket
+                  </a-button>
+                  <a-button
+                    class="button-color-volcano"
+                    style="color: white;font-weight: bold;margin-bottom: 10px; width: 49%"
+                    block
+                    @click="shadowrocketOneKey"
+                  >
+                    <my-icon type="icon-shadowrocket" />
+                    Shadowrocket(Safari)
                   </a-button>
                   <a-button
                     class="button-color-dust"
@@ -245,6 +254,7 @@ import { mapState } from 'vuex'
 import { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
 import { ChartCard } from '@/components'
 import { getAnnouncement, resetInviteCode } from '@/api/dashboard'
+const Base64 = require('js-base64').Base64
 
 export default {
   name: 'Dashboard',
@@ -304,6 +314,11 @@ export default {
           this.refreshInfo()
         }
       })
+    },
+    // shadowrocket一键订阅
+    shadowrocketOneKey () {
+      const oneKey = 'sub://' + Base64.encode(this.user.subsLink + 'shadowrocket')
+      window.location.href = oneKey
     },
     refreshInfo () {
       this.$http.delete('/user/info')
