@@ -25,6 +25,13 @@ export const asyncRouterMap = [
       },
       // plan
       {
+        path: '/user/shop',
+        name: 'shop',
+        redirect: '/plan/index',
+        hidden: true,
+        meta: { title: 'menu.subscription', keepAlive: true, icon: 'shopping-cart' }
+      },
+      {
         path: '/plan',
         name: 'plan',
         redirect: '/plan/index',
