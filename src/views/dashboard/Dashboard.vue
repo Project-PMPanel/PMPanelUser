@@ -181,7 +181,7 @@
                   </a-button>
                   <a-button
                     class="button-color-dust"
-                    style="color: white;font-weight: bold;margin-bottom: 10px"
+                    style="color: white;font-weight: bold;margin-bottom: 10px;margin-right: 2%; width: 49%"
                     block
                     v-clipboard:copy="user.subsLink + 'clash'"
                     v-clipboard:success="onCopy"
@@ -189,6 +189,15 @@
                   >
                     <my-icon type="icon-clash" />
                     Clash
+                  </a-button>
+                  <a-button
+                    class="button-color-dust"
+                    style="color: white;font-weight: bold;margin-bottom: 10px;width: 49%"
+                    block
+                    @click="clashOneKey"
+                  >
+                    <my-icon type="icon-clash" />
+                    Clash(OneKey)
                   </a-button>
                   <a-button
                     class="button-color-daybreak"
@@ -287,6 +296,12 @@ export default {
   created () {
     this.user = this.userInfo
     this.avatar = this.userInfo.avatar
+    this.$crisp.push(['set', 'user:email', this.user.email])
+    window.CRISP_TOKEN_ID = this.user.uuid
+    this.$crisp.push(['set', 'session:data', [[['Expire', this.user.expireIn.split(' ')[0]]]]])
+    this.$crisp.push(['set', 'session:data', [[['Traffic', this.user.transferEnableGb + 'GB']]]])
+    this.$crisp.push(['set', 'session:data', [[['Class', this.user.clazz]]]])
+    this.$crisp.push(['set', 'session:data', [[['Money', this.user.money]]]])
     console.log(this.user)
     this.getAnnouncement()
   },
@@ -318,6 +333,11 @@ export default {
     // shadowrocket一键订阅
     shadowrocketOneKey () {
       const oneKey = 'sub://' + Base64.encode(this.user.subsLink + 'shadowrocket')
+      window.location.href = oneKey
+    },
+    // clash一键订阅
+    clashOneKey () {
+      const oneKey = 'clash://install-config?url=' + this.user.subsLink + 'clash'
       window.location.href = oneKey
     },
     refreshInfo () {

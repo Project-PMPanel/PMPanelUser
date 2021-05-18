@@ -27,8 +27,14 @@ import moment from 'moment'
 import VMdEditor from '@kangc/v-md-editor'
 import '@kangc/v-md-editor/lib/style/base-editor.css'
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
+import CrispChat from '@dansmaculotte/vue-crisp-chat'
 VMdEditor.use(vuepressTheme)
 Vue.use(VMdEditor)
+Vue.use(CrispChat, {
+  websiteId: 'config_your_websiteId', //配置你的websiteId
+  disabled: true, // 禁用crisp
+  hideOnLoad: false
+})
 
 const MyIcon = Icon.createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_2202754_vcbbp2m4oyg.js' // 在 iconfont.cn 上生成
