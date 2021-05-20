@@ -263,6 +263,7 @@ import { mapState } from 'vuex'
 import { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
 import { ChartCard } from '@/components'
 import { getAnnouncement, resetInviteCode } from '@/api/dashboard'
+import config from '@/config/defaultSettings'
 const Base64 = require('js-base64').Base64
 
 export default {
@@ -296,13 +297,14 @@ export default {
   created () {
     this.user = this.userInfo
     this.avatar = this.userInfo.avatar
-    this.$crisp.push(['set', 'user:email', this.user.email])
-    window.CRISP_TOKEN_ID = this.user.uuid
-    this.$crisp.push(['set', 'session:data', [[['Expire', this.user.expireIn.split(' ')[0]]]]])
-    this.$crisp.push(['set', 'session:data', [[['Traffic', this.user.transferEnableGb + 'GB']]]])
-    this.$crisp.push(['set', 'session:data', [[['Class', this.user.clazz]]]])
-    this.$crisp.push(['set', 'session:data', [[['Money', this.user.money]]]])
-    console.log(this.user)
+    if (!config.disableCrisp) {
+      window.CRISP_TOKEN_ID = this.user.uuid
+      this.$crisp.push(['set', 'user:email', this.user.email])
+      this.$crisp.push(['set', 'session:data', [[['Expire', this.user.expireIn.split(' ')[0]]]]])
+      this.$crisp.push(['set', 'session:data', [[['Traffic', this.user.transferEnableGb + 'GB']]]])
+      this.$crisp.push(['set', 'session:data', [[['Class', this.user.clazz]]]])
+      this.$crisp.push(['set', 'session:data', [[['Money', this.user.money]]]])
+    }
     this.getAnnouncement()
   },
   methods: {

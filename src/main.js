@@ -28,11 +28,12 @@ import VMdEditor from '@kangc/v-md-editor'
 import '@kangc/v-md-editor/lib/style/base-editor.css'
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import CrispChat from '@dansmaculotte/vue-crisp-chat'
+import config from '@/config/defaultSettings'
 VMdEditor.use(vuepressTheme)
 Vue.use(VMdEditor)
 Vue.use(CrispChat, {
-  websiteId: 'config_your_websiteId', //配置你的websiteId
-  disabled: true, // 禁用crisp
+  websiteId: config.websiteId, // 配置你的websiteId
+  disabled: config.disableCrisp, // 禁用crisp
   hideOnLoad: false
 })
 
