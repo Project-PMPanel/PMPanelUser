@@ -111,6 +111,7 @@ const locale = {
   'dashboard.content.tutorialCenter': '教程中心',
   'dashboard.content.appSubs': '软件订阅',
   'dashboard.content.commonSubs': '通用订阅',
+  'dashboard.content.trafficDetails': '流量详情',
 
   'plan.package': '流量包',
   'plan.package.title': '流量包-当月有效',

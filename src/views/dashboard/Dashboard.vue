@@ -2,9 +2,6 @@
   <page-header-wrapper :breadcrumb="{}">
     <template v-slot:content>
       <div class="page-header-content">
-        <div class="avatar">
-          <a-avatar size="large" :src="currentUser.avatar"/>
-        </div>
         <div class="content">
           <div class="content-title">
             {{ user.email }}<span class="welcome-text"></span>
@@ -20,10 +17,10 @@
       {{ this.$i18n.locale === 'zh-CN' ? '流量已不足30%' : 'Low flow' }}
     </div>
     <div v-if="$moment(user.expireIn).isBefore($moment().add(3, 'days')) && $moment(user.expireIn).isAfter($moment())" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
-      {{ this.$i18n.locale === 'zh-CN' ? '即将过期,请尽快购买套餐' : 'The plan will expire soon, please subs a new plan quickly' }}
+      {{ this.$i18n.locale === 'zh-CN' ? '即将过期,请尽快购买订阅' : 'The plan will expire soon, please subs a new plan quickly' }}
     </div>
     <div v-if="$moment(user.expireIn).isBefore($moment())" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
-      {{ this.$i18n.locale === 'zh-CN' ? '已过期,请尽快购买套餐' : 'The plan has been expired, please subs a new plan quickly' }}
+      {{ this.$i18n.locale === 'zh-CN' ? '已过期,请尽快购买订阅' : 'The plan has been expired, please subs a new plan quickly' }}
     </div>
     <div>
       <a-row :gutter="24">
@@ -141,115 +138,80 @@
               <my-icon type="icon-subscription" />
               {{ $t('dashboard.content.subsCenter') }}
             </span>
-            <a-tabs default-active-key="1">
-              <a-tab-pane key="1">
-                <span slot="tab" style="font-size: 18px;" >
-                  <my-icon type="icon-app" />
-                  {{ $t('dashboard.content.appSubs') }}
-                </span>
-                <div>
-                  <a-button
-                    class="button-color-cyan"
-                    style="color: white;font-weight: bold;margin-bottom: 10px"
-                    block
-                    v-clipboard:copy="user.subsLink + 'v2ray'"
-                    v-clipboard:success="onCopy"
-                    v-clipboard:error="onError"
-                  >
-                    <my-icon type="icon-v2ray" />
-                    V2ray
-                  </a-button>
-                  <a-button
-                    class="button-color-volcano"
-                    style="color: white;font-weight: bold;margin-bottom: 10px;margin-right: 2%; width: 49%"
-                    block
-                    v-clipboard:copy="user.subsLink + 'shadowrocket'"
-                    v-clipboard:success="onCopy"
-                    v-clipboard:error="onError"
-                  >
-                    <my-icon type="icon-shadowrocket" />
-                    Shadowrocket
-                  </a-button>
-                  <a-button
-                    class="button-color-volcano"
-                    style="color: white;font-weight: bold;margin-bottom: 10px; width: 49%"
-                    block
-                    @click="shadowrocketOneKey"
-                  >
-                    <my-icon type="icon-shadowrocket" />
-                    Shadowrocket(Safari)
-                  </a-button>
-                  <a-button
-                    class="button-color-dust"
-                    style="color: white;font-weight: bold;margin-bottom: 10px;margin-right: 2%; width: 49%"
-                    block
-                    v-clipboard:copy="user.subsLink + 'clash'"
-                    v-clipboard:success="onCopy"
-                    v-clipboard:error="onError"
-                  >
-                    <my-icon type="icon-clash" />
-                    Clash
-                  </a-button>
-                  <a-button
-                    class="button-color-dust"
-                    style="color: white;font-weight: bold;margin-bottom: 10px;width: 49%"
-                    block
-                    @click="clashOneKey"
-                  >
-                    <my-icon type="icon-clash" />
-                    Clash(OneKey)
-                  </a-button>
-                  <a-button
-                    class="button-color-daybreak"
-                    style="color: white;font-weight: bold;margin-bottom: 10px"
-                    block
-                    v-clipboard:copy="user.subsLink + 'surge4'"
-                    v-clipboard:success="onCopy"
-                    v-clipboard:error="onError"
-                  >
-                    <my-icon type="icon-surge" />
-                    Surge
-                  </a-button>
-                </div>
-              </a-tab-pane>
-              <!--  <a-tab-pane key="2">
-                <span slot="tab" style="font-size: 18px;">
-                  <my-icon type="icon-common" />
-                  {{ $t('dashboard.content.commonSubs') }}
-                </span>
-                TODO
-              </a-tab-pane>-->
-            </a-tabs>
+            <div>
+              <a-button
+                class="button-color-cyan"
+                style="color: white;font-weight: bold;margin-bottom: 10px"
+                block
+                v-clipboard:copy="user.subsLink + 'v2ray'"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+              >
+                <my-icon type="icon-v2ray" />
+                V2ray
+              </a-button>
+              <a-button
+                class="button-color-volcano"
+                style="color: white;font-weight: bold;margin-bottom: 10px;margin-right: 2%; width: 49%"
+                block
+                v-clipboard:copy="user.subsLink + 'shadowrocket'"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+              >
+                <my-icon type="icon-shadowrocket" />
+                Shadowrocket
+              </a-button>
+              <a-button
+                class="button-color-volcano"
+                style="color: white;font-weight: bold;margin-bottom: 10px; width: 49%"
+                block
+                @click="shadowrocketOneKey"
+              >
+                <my-icon type="icon-shadowrocket" />
+                Shadowrocket(Safari)
+              </a-button>
+              <a-button
+                class="button-color-dust"
+                style="color: white;font-weight: bold;margin-bottom: 10px;margin-right: 2%; width: 49%"
+                block
+                v-clipboard:copy="user.subsLink + 'clash'"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+              >
+                <my-icon type="icon-clash" />
+                Clash
+              </a-button>
+              <a-button
+                class="button-color-dust"
+                style="color: white;font-weight: bold;margin-bottom: 10px;width: 49%"
+                block
+                @click="clashOneKey"
+              >
+                <my-icon type="icon-clash" />
+                Clash(OneKey)
+              </a-button>
+              <a-button
+                class="button-color-daybreak"
+                style="color: white;font-weight: bold;margin-bottom: 10px"
+                block
+                v-clipboard:copy="user.subsLink + 'surge4'"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+              >
+                <my-icon type="icon-surge" />
+                Surge
+              </a-button>
+            </div>
           </a-card>
         </a-col>
         <a-col :xl="12" :md="24" :sm="24" :style="{ marginBottom: '24px' }">
-          <a-card :loading="loading" style="margin-bottom: 24px;height: 250px" :bordered="false">
+          <a-card :loading="loading" style="margin-bottom: 24px" :bordered="false">
             <span slot="title">
               <a-icon type="profile" />
-              {{ $t('dashboard.content.tutorialCenter') }}
+              {{ $t('dashboard.content.trafficDetails') }}
             </span>
             <div>
-              <p>
-                <a-button icon="windows" class="button-color-volcano" style="color: white;font-weight: bold" block @click="$router.push({path: '/tutorials/windows'})">
-                  Windows
-                </a-button>
-              </p>
-              <p>
-                <a-button icon="android" class="button-color-dust" style="color: white;font-weight: bold" block @click="$router.push({path: '/tutorials/android'})">
-                  Android
-                </a-button>
-              </p>
-              <p>
-                <a-button block class="button-color-purple" style="color: white;font-weight: bold" @click="$router.push({path: '/tutorials/mac'})">
-                  <my-icon type="icon-mac"></my-icon>
-                  Mac
-                </a-button>
-              </p>
-              <p>
-                <a-button icon="apple" class="button-color-daybreak" style="color: white;font-weight: bold" block @click="$router.push({path: '/tutorials/ios'})">
-                  iOS
-                </a-button>
-              </p>
+              <div id="container"></div>
             </div>
           </a-card>
         </a-col>
@@ -262,7 +224,8 @@
 import { mapState } from 'vuex'
 import { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
 import { ChartCard } from '@/components'
-import { getAnnouncement, resetInviteCode } from '@/api/dashboard'
+import { Column } from '@antv/g2plot'
+import { getAnnouncement, getTrafficDetails, resetInviteCode } from '@/api/dashboard'
 import config from '@/config/defaultSettings'
 const Base64 = require('js-base64').Base64
 
@@ -270,7 +233,8 @@ export default {
   name: 'Dashboard',
   components: {
     PageHeaderWrapper,
-    ChartCard
+    ChartCard,
+    Column
   },
   data () {
     return {
@@ -294,7 +258,7 @@ export default {
       return this.$store.getters.userInfo
     }
   },
-  created () {
+  async created () {
     this.user = this.userInfo
     this.avatar = this.userInfo.avatar
     if (!config.disableCrisp) {
@@ -306,6 +270,21 @@ export default {
       this.$crisp.push(['set', 'session:data', [[['Money', this.user.money]]]])
     }
     this.getAnnouncement()
+    // 当月流量数据
+    const result = await getTrafficDetails()
+    if (result.code === 200) {
+      const column = new Column('container', {
+        data: result.data.trafficDetails,
+        xField: 'day',
+        yField: 'value',
+        seriesField: 'traffic',
+        isGroup: 'true',
+        columnStyle: {
+          radius: [20, 20, 0, 0]
+        }
+      })
+      column.render()
+    }
   },
   methods: {
     getAnnouncement () {

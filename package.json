@@ -14,6 +14,7 @@
   "dependencies": {
     "@ant-design-vue/pro-layout": "^1.0.6",
     "@antv/data-set": "^0.10.2",
+    "@antv/g2plot": "^2.3.21",
     "@dansmaculotte/vue-crisp-chat": "^0.1.0",
     "@kangc/v-md-editor": "^1.5.5",
     "ant-design-vue": "^1.6.4",

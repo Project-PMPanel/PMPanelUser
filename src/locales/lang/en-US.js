@@ -111,6 +111,7 @@ const locale = {
   'dashboard.content.tutorialCenter': 'Tutorials',
   'dashboard.content.appSubs': 'App Subs',
   'dashboard.content.commonSubs': 'Common Subs',
+  'dashboard.content.trafficDetails': 'Traffic Details',
 
   'plan.package': 'Package',
   'plan.package.title': 'Package - Current month valid',

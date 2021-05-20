@@ -6,7 +6,7 @@
       <a href="https://www.github.com/sendya/" target="_blank">@Sendya</a>-->
     </template>
     <template v-slot:copyright>
-      <a href="/"> {{ title }} </a>
+      Copyright &copy; <a href="/"> {{ title }} </a>
     </template>
   </global-footer>
 </template>

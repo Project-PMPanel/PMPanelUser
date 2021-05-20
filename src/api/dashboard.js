@@ -2,6 +2,7 @@ import request from '@/utils/request'
 
 const api = {
   announcement: '/user/announcement',
+  trafficDetails: '/user/trafficDetails',
   inviteCode: '/user/inviteCode'
 }
 
@@ -14,6 +15,17 @@ export default api
 export function getAnnouncement () {
   return request({
     url: api.announcement,
+    method: 'get'
+  })
+}
+
+/**
+ * 获取流量详情
+ * @returns {AxiosPromise}
+ */
+export function getTrafficDetails () {
+  return request({
+    url: api.trafficDetails,
     method: 'get'
   })
 }
