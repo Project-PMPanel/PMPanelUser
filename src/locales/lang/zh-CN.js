@@ -204,7 +204,8 @@ const locale = {
   'usercenter.settings.security.changeEmail': '更换邮箱',
   'usercenter.settings.security.changeEmail.oldEmailCheckCode': '旧邮箱验证码',
   'usercenter.settings.security.changeEmail.newEmail': '新邮箱地址',
-  'usercenter.settings.security.changeEmail.newEmailCheckCode': '新邮箱验证码'
+  'usercenter.settings.security.changeEmail.newEmailCheckCode': '新邮箱验证码',
+  'usercenter.settings.binding.tg': '绑定Telegram'
 
 }
 

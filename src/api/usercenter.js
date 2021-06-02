@@ -3,7 +3,8 @@ import request from '@/utils/request'
 const api = {
   changePass: '/user/password',
   getEmailCheckCode: '/user/getEmailCheckCode',
-  changeEmail: '/user/email'
+  changeEmail: '/user/email',
+  getTGConfig: '/user/tgconfig'
 }
 
 /**
@@ -48,5 +49,17 @@ export function changeEmail (params) {
     }).catch(error => {
       reject(error)
     })
+  })
+}
+
+/**
+ * 获取TG配置
+ * @param parameter
+ * @returns {AxiosPromise}
+ */
+export function getTGConfig () {
+  return request({
+    url: api.getTGConfig,
+    method: 'get'
   })
 }
