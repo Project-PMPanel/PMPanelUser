@@ -205,6 +205,7 @@ const locale = {
   'usercenter.settings.security.changeEmail.newEmail': 'New Email Address',
   'usercenter.settings.security.changeEmail.newEmailCheckCode': 'New email\'s CheckCode',
   'usercenter.settings.binding.tg': 'Binding Telegram',
+  'usercenter.settings.binding.unbinding.tg': 'Unbinding Telegram',
 
   'app.setting.pagestyle': 'Page style setting',
   'app.setting.pagestyle.light': 'Light style',

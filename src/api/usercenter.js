@@ -4,7 +4,8 @@ const api = {
   changePass: '/user/password',
   getEmailCheckCode: '/user/getEmailCheckCode',
   changeEmail: '/user/email',
-  getTGConfig: '/user/tgconfig'
+  getTGConfig: '/user/tgconfig',
+  unBindTG: '/user/unBindTG'
 }
 
 /**
@@ -61,5 +62,21 @@ export function getTGConfig () {
   return request({
     url: api.getTGConfig,
     method: 'get'
+  })
+}
+
+/**
+ * 解绑TG
+ */
+export function unBindTG () {
+  return new Promise((resolve, reject) => {
+    request({
+      url: api.unBindTG,
+      method: 'post'
+    }).then(response => {
+      resolve(response)
+    }).catch(error => {
+      reject(error)
+    })
   })
 }
