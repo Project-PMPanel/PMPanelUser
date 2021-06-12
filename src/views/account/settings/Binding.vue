@@ -19,16 +19,20 @@ export default {
     return {
       bindTGFlag: false,
       botUsername: '',
-      user: this.$store.getters.userInfo
+      user: {}
     }
   },
   async created () {
     const result = await getTGConfig()
     if (result.code === 200) {
       this.botUsername = result.data.botUsername
-      if (this.user.uuid !== null) {
-        this.bindTGFlag = true
-      }
+      this.$store.dispatch('GetInfo').then(res => {
+        this.user = res.data.user
+        if (this.user.tgId !== null) {
+          console.log('tgId !== null')
+          this.bindTGFlag = true
+        }
+      })
     }
   },
   methods: {
@@ -43,6 +47,7 @@ export default {
           message: result.code,
           description: result.message
         })
+        await this.$store.dispatch('GetInfo')
         this.bindTGFlag = false
       }
     }
