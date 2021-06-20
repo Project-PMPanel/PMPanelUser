@@ -30,6 +30,12 @@ import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import CrispChat from '@dansmaculotte/vue-crisp-chat'
 import config from '@/config/defaultSettings'
 VMdEditor.use(vuepressTheme)
+VMdEditor.xss.extend({
+  // extend white list
+  whiteList: {
+    source: ['src', 'type']
+  }
+})
 Vue.use(VMdEditor)
 Vue.use(CrispChat, {
   websiteId: config.websiteId, // 配置你的websiteId
