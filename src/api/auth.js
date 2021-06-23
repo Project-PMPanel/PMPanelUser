@@ -1,6 +1,7 @@
 import request from '@/utils/request'
 
 const authApi = {
+  loginWithOther: '/auth/login/',
   getSiteConfig: '/auth/getSiteConfig',
   Register: '/auth/register',
   Login: '/auth/login',
@@ -39,6 +40,17 @@ export function auth (parameter) {
     url: authApi.Login,
     method: 'post',
     data: parameter
+  })
+}
+
+/**
+ * 外部登录
+ * @returns {AxiosPromise}
+ */
+export function loginWithOther (parameter) {
+  return request({
+    url: authApi.loginWithOther + '/' + parameter,
+    method: 'get'
   })
 }
 

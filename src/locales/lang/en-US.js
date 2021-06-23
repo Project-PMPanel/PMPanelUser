@@ -27,6 +27,7 @@ const locale = {
   'login.failed': 'Login failed',
   'login.successWelcome': 'Welcome',
   'login.successInfo': 'welcome back',
+  'login.signInWith': 'Sign in with',
 
   'register.title': 'Register',
   'register.email': 'Email',
@@ -206,6 +207,8 @@ const locale = {
   'usercenter.settings.security.changeEmail.newEmailCheckCode': 'New email\'s CheckCode',
   'usercenter.settings.binding.tg': 'Binding Telegram',
   'usercenter.settings.binding.unbinding.tg': 'Unbinding Telegram',
+  'usercenter.settings.binding.google': 'Binding Google',
+  'usercenter.settings.binding.unbinding.google': 'Unbinding Google',
 
   'app.setting.pagestyle': 'Page style setting',
   'app.setting.pagestyle.light': 'Light style',

@@ -27,6 +27,7 @@ const locale = {
   'login.failed': '登录失败',
   'login.successWelcome': '欢迎',
   'login.successInfo': '欢迎回来',
+  'login.signInWith': '其他登陆方式',
 
   'register.title': '注册',
   'register.email': '邮箱',
@@ -206,7 +207,9 @@ const locale = {
   'usercenter.settings.security.changeEmail.newEmail': '新邮箱地址',
   'usercenter.settings.security.changeEmail.newEmailCheckCode': '新邮箱验证码',
   'usercenter.settings.binding.tg': '绑定Telegram',
-  'usercenter.settings.binding.unbinding.tg': '解绑Telegram'
+  'usercenter.settings.binding.unbinding.tg': '解绑Telegram',
+  'usercenter.settings.binding.google': '绑定Google',
+  'usercenter.settings.binding.unbinding.google': '解绑Google'
 
 }
 

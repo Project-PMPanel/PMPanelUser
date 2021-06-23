@@ -32,7 +32,15 @@
           :disabled="state.loginBtn"> {{ $t('login.loginBtn') }} </a-button>
       </a-form-item>
 
-      <select-lang style="margin-top: -20px;float: right" />
+      <div class="user-login-other">
+        <div v-if="loginWith.enable">
+          <span>{{ $t('login.signInWith') }}</span>
+          <a v-if="loginWith.google">
+            <a-icon class="item-icon" type="google" @click="signWithGoogle"></a-icon>
+          </a>
+        </div>
+        <select-lang style="margin-top: -20px;float: right" />
+      </div>
     </a-form>
   </div>
 </template>
@@ -43,6 +51,7 @@
 import { mapActions } from 'vuex'
 import storage from 'store'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { getSiteConfig, loginWithOther } from '@/api/auth'
 
 export default {
   components: {
@@ -64,10 +73,28 @@ export default {
         // auth type: 0 email, 1 username, 2 telephone
         loginType: 0,
         smsSendBtn: false
+      },
+      loginWith: {
+        'enable': false,
+        'google': false
       }
     }
   },
-  created () {
+  async created () {
+    // get config
+    const result = await getSiteConfig()
+    storage.set('SITE_TITLE', result.data.panelSiteTitle)
+    if (result.data.loginWith.enable) {
+      this.loginWith.enable = true
+      // 判断开启了哪些oauth
+      if (result.data.loginWith.google) {
+        this.loginWith.google = true
+      }
+    }
+
+    if (this.$route.query.token !== undefined) {
+      document.cookie = 'token=' + this.$route.query.token
+    }
     const token = this.getCookie('token')
     if (token.length > 40) {
       this.$i18n.locale === 'zh-CN' ? this.$message.success('正在跳转') : this.$message.success('Redirect~')
@@ -172,6 +199,17 @@ export default {
         }
       }
       return ''
+    },
+    signWithGoogle: async function () {
+      console.log('sign with google')
+      const result = await loginWithOther('google')
+      console.log(result)
+      if (result.code === 200) {
+        this.href(result.data.url)
+      }
+    },
+    href: function (url) {
+      window.location.href = url
     }
   }
 }
@@ -198,6 +236,26 @@ export default {
     font-size: 16px;
     height: 40px;
     width: 100%;
+  }
+
+  .user-login-other {
+    text-align: left;
+    margin-top: 24px;
+    line-height: 22px;
+    .item-icon {
+      font-size: 24px;
+      color: rgba(0, 0, 0, 0.2);
+      margin-left: 16px;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: color 0.3s;
+      &:hover {
+        color: #1890ff;
+      }
+    }
+    .register {
+      float: right;
+    }
   }
 }
 </style>
