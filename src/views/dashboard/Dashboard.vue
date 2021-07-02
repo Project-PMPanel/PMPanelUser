@@ -138,8 +138,8 @@
               <my-icon type="icon-subscription" />
               {{ $t('dashboard.content.subsCenter') }}
             </span>
-            <div>
-              <div style="margin: 1% 1% 0 1%;width: 22.5%;float: left">
+            <a-row :gutter="24">
+              <a-col :xl="6" :md="12" :sm="24">
                 <a-card :hoverable="true">
                   <a-card-meta>
                     <a slot="title">V2ray</a>
@@ -159,8 +159,29 @@
                     </a-button>
                   </template>
                 </a-card>
-              </div>
-              <div style="margin: 1% 1% 0 1%;width: 22.5%;float: left">
+              </a-col>
+              <a-col :xl="6" :md="12" :sm="24">
+                <a-card :hoverable="true">
+                  <a-card-meta>
+                    <a slot="title">Surge</a>
+                    <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于Surge的订阅链接' : 'adapt surge subscription' }}</div>
+                  </a-card-meta>
+                  <template class="ant-card-actions" slot="actions">
+                    <a-button
+                      class="button-color-cyan"
+                      style="color: white;font-weight: bold;"
+                      block
+                      v-clipboard:copy="user.subsLink + 'surge4'"
+                      v-clipboard:success="onCopy"
+                      v-clipboard:error="onError"
+                    >
+                      <my-icon type="icon-surge" />
+                      {{ $i18n.locale === 'zh-CN' ? '点击复制' : 'click to copy' }}
+                    </a-button>
+                  </template>
+                </a-card>
+              </a-col>
+              <a-col :xl="6" :md="12" :sm="24">
                 <a-card :hoverable="true">
                   <a-card-meta>
                     <a slot="title">Shadowrocket</a>
@@ -189,8 +210,8 @@
                     </a-button>
                   </template>
                 </a-card>
-              </div>
-              <div style="margin: 1% 1% 0 1%;width: 22.5%;float: left">
+              </a-col>
+              <a-col :xl="6" :md="12" :sm="24">
                 <a-card :hoverable="true">
                   <a-card-meta>
                     <a slot="title">Clash</a>
@@ -219,29 +240,8 @@
                     </a-button>
                   </template>
                 </a-card>
-              </div>
-              <div style="margin: 1% 1% 0 1%;width: 22.5%;float: left">
-                <a-card :hoverable="true">
-                  <a-card-meta>
-                    <a slot="title">Surge</a>
-                    <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于Surge的订阅链接' : 'adapt surge subscription' }}</div>
-                  </a-card-meta>
-                  <template class="ant-card-actions" slot="actions">
-                    <a-button
-                      class="button-color-cyan"
-                      style="color: white;font-weight: bold;"
-                      block
-                      v-clipboard:copy="user.subsLink + 'surge4'"
-                      v-clipboard:success="onCopy"
-                      v-clipboard:error="onError"
-                    >
-                      <my-icon type="icon-surge" />
-                      {{ $i18n.locale === 'zh-CN' ? '点击复制' : 'click to copy' }}
-                    </a-button>
-                  </template>
-                </a-card>
-              </div>
-            </div>
+              </a-col>
+            </a-row>
           </a-card>
         </a-col>
         <a-col :xl="24" :md="24" :sm="24" :style="{ marginBottom: '24px' }">
