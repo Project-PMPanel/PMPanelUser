@@ -14,13 +14,13 @@
       </div>
     </template>
     <div v-if="user.remainTraffic" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
-      {{ this.$i18n.locale === 'zh-CN' ? '流量已不足30%' : 'Low flow' }}
+      {{ this.$i18n.locale === 'zh-CN' ? '流量已不足30%' : 'Low flow' }} -> <router-link to="/plan/index">{{ this.$i18n.locale === 'zh-CN' ? '购买流量包' : 'Buy Traffic Package' }}</router-link>
     </div>
     <div v-if="$moment(user.expireIn).isBefore($moment().add(3, 'days')) && $moment(user.expireIn).isAfter($moment())" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
-      {{ this.$i18n.locale === 'zh-CN' ? '即将过期,请尽快购买订阅' : 'The plan will expire soon, please subs a new plan quickly' }}
+      {{ this.$i18n.locale === 'zh-CN' ? '即将过期,请尽快购买订阅' : 'The plan will expire soon, please subs a new plan quickly' }} -> <router-link to="/plan/index">{{ this.$i18n.locale === 'zh-CN' ? '购买订阅' : 'Sub a Plan' }}</router-link>
     </div>
     <div v-if="$moment(user.expireIn).isBefore($moment())" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
-      {{ this.$i18n.locale === 'zh-CN' ? '已过期,请尽快购买订阅' : 'The plan has been expired, please subs a new plan quickly' }}
+      {{ this.$i18n.locale === 'zh-CN' ? '已过期,请尽快购买订阅' : 'The plan has been expired, please subs a new plan quickly' }} -> <router-link to="/plan/index">{{ this.$i18n.locale === 'zh-CN' ? '购买订阅' : 'Sub a Plan' }}</router-link>
     </div>
     <div>
       <a-row :gutter="24">
@@ -132,79 +132,119 @@
             </a-card>
           </div>
         </a-col>
-        <a-col :xl="12" :md="24" :sm="24">
+        <a-col :xl="24" :md="24" :sm="24">
           <a-card :loading="loading" style="margin-bottom: 24px;" :bordered="false">
             <span slot="title">
               <my-icon type="icon-subscription" />
               {{ $t('dashboard.content.subsCenter') }}
             </span>
             <div>
-              <a-button
-                class="button-color-cyan"
-                style="color: white;font-weight: bold;margin-bottom: 10px"
-                block
-                v-clipboard:copy="user.subsLink + 'v2ray'"
-                v-clipboard:success="onCopy"
-                v-clipboard:error="onError"
-              >
-                <my-icon type="icon-v2ray" />
-                V2ray
-              </a-button>
-              <a-button
-                class="button-color-volcano"
-                style="color: white;font-weight: bold;margin-bottom: 10px;margin-right: 2%; width: 49%"
-                block
-                v-clipboard:copy="user.subsLink + 'shadowrocket'"
-                v-clipboard:success="onCopy"
-                v-clipboard:error="onError"
-              >
-                <my-icon type="icon-shadowrocket" />
-                Shadowrocket
-              </a-button>
-              <a-button
-                class="button-color-volcano"
-                style="color: white;font-weight: bold;margin-bottom: 10px; width: 49%"
-                block
-                @click="shadowrocketOneKey"
-              >
-                <my-icon type="icon-shadowrocket" />
-                Shadowrocket(Safari)
-              </a-button>
-              <a-button
-                class="button-color-dust"
-                style="color: white;font-weight: bold;margin-bottom: 10px;margin-right: 2%; width: 49%"
-                block
-                v-clipboard:copy="user.subsLink + 'clash'"
-                v-clipboard:success="onCopy"
-                v-clipboard:error="onError"
-              >
-                <my-icon type="icon-clash" />
-                Clash
-              </a-button>
-              <a-button
-                class="button-color-dust"
-                style="color: white;font-weight: bold;margin-bottom: 10px;width: 49%"
-                block
-                @click="clashOneKey"
-              >
-                <my-icon type="icon-clash" />
-                Clash(OneKey)
-              </a-button>
-              <a-button
-                class="button-color-daybreak"
-                style="color: white;font-weight: bold;margin-bottom: 10px"
-                block
-                v-clipboard:copy="user.subsLink + 'surge4'"
-                v-clipboard:success="onCopy"
-                v-clipboard:error="onError"
-              >
-                <my-icon type="icon-surge" />
-                Surge
-              </a-button>
+              <div style="margin: 1% 1% 0 1%;width: 22.5%;float: left">
+                <a-card :hoverable="true">
+                  <a-card-meta>
+                    <a slot="title">V2ray</a>
+                    <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于原版v2ray的订阅链接' : 'adapt original v2ray subscription' }}</div>
+                  </a-card-meta>
+                  <template class="ant-card-actions" slot="actions">
+                    <a-button
+                      class="button-color-cyan"
+                      style="color: white;font-weight: bold;"
+                      block
+                      v-clipboard:copy="user.subsLink + 'v2ray'"
+                      v-clipboard:success="onCopy"
+                      v-clipboard:error="onError"
+                    >
+                      <my-icon type="icon-v2ray" />
+                      {{ $i18n.locale === 'zh-CN' ? '点击复制' : 'click to copy' }}
+                    </a-button>
+                  </template>
+                </a-card>
+              </div>
+              <div style="margin: 1% 1% 0 1%;width: 22.5%;float: left">
+                <a-card :hoverable="true">
+                  <a-card-meta>
+                    <a slot="title">Shadowrocket</a>
+                    <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于小火箭的订阅链接和一键导入' : 'adapt shadowrocket subscription' }}</div>
+                  </a-card-meta>
+                  <template class="ant-card-actions" slot="actions">
+                    <a-button
+                      class="button-color-cyan"
+                      style="color: white;font-weight: bold;"
+                      block
+                      v-clipboard:copy="user.subsLink + 'shadowrocket'"
+                      v-clipboard:success="onCopy"
+                      v-clipboard:error="onError"
+                    >
+                      <my-icon type="icon-shadowrocket" />
+                      {{ $i18n.locale === 'zh-CN' ? '点击复制' : 'click to copy' }}
+                    </a-button>
+                    <a-button
+                      class="button-color-daybreak"
+                      style="color: white;font-weight: bold;"
+                      block
+                      @click="shadowrocketOneKey"
+                    >
+                      <my-icon type="icon-shadowrocket" />
+                      {{ $i18n.locale === 'zh-CN' ? '一键导入' : 'oneKey install' }}
+                    </a-button>
+                  </template>
+                </a-card>
+              </div>
+              <div style="margin: 1% 1% 0 1%;width: 22.5%;float: left">
+                <a-card :hoverable="true">
+                  <a-card-meta>
+                    <a slot="title">Clash</a>
+                    <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于Clash相关的订阅链接和一键导入' : 'adapt clash subscription' }}</div>
+                  </a-card-meta>
+                  <template class="ant-card-actions" slot="actions">
+                    <a-button
+                      class="button-color-cyan"
+                      style="color: white;font-weight: bold;"
+                      block
+                      v-clipboard:copy="user.subsLink + 'clash'"
+                      v-clipboard:success="onCopy"
+                      v-clipboard:error="onError"
+                    >
+                      <my-icon type="icon-clash" />
+                      {{ $i18n.locale === 'zh-CN' ? '点击复制' : 'click to copy' }}
+                    </a-button>
+                    <a-button
+                      class="button-color-daybreak"
+                      style="color: white;font-weight: bold;"
+                      block
+                      @click="clashOneKey"
+                    >
+                      <my-icon type="icon-clash" />
+                      {{ $i18n.locale === 'zh-CN' ? '一键导入' : 'oneKey install' }}
+                    </a-button>
+                  </template>
+                </a-card>
+              </div>
+              <div style="margin: 1% 1% 0 1%;width: 22.5%;float: left">
+                <a-card :hoverable="true">
+                  <a-card-meta>
+                    <a slot="title">Surge</a>
+                    <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于Surge的订阅链接' : 'adapt surge subscription' }}</div>
+                  </a-card-meta>
+                  <template class="ant-card-actions" slot="actions">
+                    <a-button
+                      class="button-color-cyan"
+                      style="color: white;font-weight: bold;"
+                      block
+                      v-clipboard:copy="user.subsLink + 'surge4'"
+                      v-clipboard:success="onCopy"
+                      v-clipboard:error="onError"
+                    >
+                      <my-icon type="icon-surge" />
+                      {{ $i18n.locale === 'zh-CN' ? '点击复制' : 'click to copy' }}
+                    </a-button>
+                  </template>
+                </a-card>
+              </div>
             </div>
           </a-card>
         </a-col>
-        <a-col :xl="12" :md="24" :sm="24" :style="{ marginBottom: '24px' }">
+        <a-col :xl="24" :md="24" :sm="24" :style="{ marginBottom: '24px' }">
           <a-card :loading="loading" style="margin-bottom: 24px" :bordered="false">
             <span slot="title">
               <a-icon type="profile" />
