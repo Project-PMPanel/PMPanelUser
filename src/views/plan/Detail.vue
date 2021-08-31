@@ -22,7 +22,7 @@
           <a-badge v-else :status="order.status === 0 ? 'error' : (order.status === 1 ? 'success' : (order.status === 2 ? 'default' : 'default'))" :text="order.status === 0 ? 'Unpaid' : (order.status === 1 ? 'Finished' : (order.status === 2 ? 'Canceled' : 'INVALID'))"/>
         </a-descriptions-item>
         <a-descriptions-item :label="$t('plan.order.details.planContent')">
-          <span>{{ $t('plan.content.currentMonthData') }}:</span> {{ order.planDetailsMap.currentMonthTransferEnable | numberFormat }} GB<br/>
+          <span v-if="order.planDetailsMap.currentMonthTransferEnable">{{ $t('plan.content.currentMonthData') }}: {{ order.planDetailsMap.currentMonthTransferEnable | numberFormat }} GB<br/></span>
           <span>{{ $t('plan.content.data') }}:</span> {{ order.planDetailsMap.transferEnable | numberFormat }} GB<br/>
           <span>{{ $t('plan.content.class') }}:</span> {{ order.planDetailsMap.clazz }}<br/>
           <span>{{ order.planDetailsMap.nodeSpeedlimit === 0 ? $t('plan.content.speedNoLimit') : $t('plan.content.speedLimit') + order.planDetailsMap.nodeSpeedlimit + 'Mbps' }}</span><br/>
