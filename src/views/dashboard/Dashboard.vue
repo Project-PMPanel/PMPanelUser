@@ -265,7 +265,7 @@ import { mapState } from 'vuex'
 import { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
 import { ChartCard } from '@/components'
 import { Column } from '@antv/g2plot'
-import { getAnnouncement, getTrafficDetails, resetInviteCode } from '@/api/dashboard'
+import { getAnnouncement, getTrafficDetails, resetInviteCode, getNotifyInfo } from '@/api/dashboard'
 import config from '@/config/defaultSettings'
 const Base64 = require('js-base64').Base64
 
@@ -324,6 +324,20 @@ export default {
         }
       })
       column.render()
+    }
+    // 弹窗通知
+    const notiResult = await getNotifyInfo()
+    if (notiResult.code === 200 && notiResult.data.notify) {
+      this.$notification[notiResult.data.notify.type]({
+        duration: null,
+        style: {
+          width: '600px',
+          marginLeft: `${385 - 600}px`,
+          marginTop: '70px'
+        },
+        message: notiResult.data.notify.title,
+        description: notiResult.data.notify.content
+      })
     }
   },
   methods: {
