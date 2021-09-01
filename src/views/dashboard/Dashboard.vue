@@ -72,7 +72,7 @@
               </span>
             </template>
             <template slot="total">
-              {{ user.aliveCount }} / {{ user.nodeConnector === 0 ? $t('dashboard.content.nodeConnector') : user.nodeConnector }}
+              {{ user.onlineCount }} / {{ user.nodeConnector === 0 ? $t('dashboard.content.nodeConnector') : user.nodeConnector }}
             </template>
             <template slot="content">
               {{ user.nodeSpeedlimit === 0 ? $t('dashboard.content.nodeSpeedNoLimit') : $t('dashboard.content.nodeSpeedLimit') + user.nodeSpeedlimit + 'Mbps' }}
