@@ -329,7 +329,7 @@ export default {
     const notiResult = await getNotifyInfo()
     if (notiResult.code === 200 && notiResult.data.notify) {
       this.$notification[notiResult.data.notify.type]({
-        duration: null,
+        duration: 15,
         style: {
           width: '600px',
           marginLeft: `${385 - 600}px`,
