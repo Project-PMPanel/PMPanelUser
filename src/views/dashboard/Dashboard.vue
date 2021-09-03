@@ -264,7 +264,7 @@
 import { mapState } from 'vuex'
 import { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
 import { ChartCard } from '@/components'
-import { Column } from '@antv/g2plot'
+import { Chart } from '@antv/g2'
 import { getAnnouncement, getTrafficDetails, resetInviteCode, getNotifyInfo } from '@/api/dashboard'
 import config from '@/config/defaultSettings'
 const Base64 = require('js-base64').Base64
@@ -274,7 +274,7 @@ export default {
   components: {
     PageHeaderWrapper,
     ChartCard,
-    Column
+    Chart
   },
   data () {
     return {
@@ -313,17 +313,32 @@ export default {
     // 当月流量数据
     const result = await getTrafficDetails()
     if (result.code === 200) {
-      const column = new Column('container', {
-        data: result.data.trafficDetails,
-        xField: 'day',
-        yField: 'value',
-        seriesField: 'traffic',
-        isGroup: 'true',
-        columnStyle: {
-          radius: [20, 20, 0, 0]
+      const chart = new Chart({
+        container: 'container',
+        autoFit: true,
+        height: 500
+      })
+      chart.data(result.data.trafficDetails)
+      chart.scale('value', {
+        min: 0
+      })
+      chart.scale('day', {
+        range: [0, 1]
+      })
+      chart.tooltip({
+        showCrosshairs: true,
+        shared: true
+      })
+      chart.axis('value', {
+        label: {
+          formatter: (val) => {
+            return val + ' Mb'
+          }
         }
       })
-      column.render()
+      chart.line().position('day*value').color('traffic').shape('smooth')
+      chart.point().position('day*value').color('traffic').shape('circle')
+      chart.render()
     }
     // 弹窗通知
     const notiResult = await getNotifyInfo()
