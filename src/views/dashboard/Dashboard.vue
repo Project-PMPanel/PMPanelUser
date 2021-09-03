@@ -346,8 +346,7 @@ export default {
       this.$notification[notiResult.data.notify.type]({
         duration: 15,
         style: {
-          width: '600px',
-          marginLeft: `${385 - 600}px`,
+          width: '100%',
           marginTop: '70px'
         },
         message: notiResult.data.notify.title,
