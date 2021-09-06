@@ -142,13 +142,24 @@
               <a-col :xl="6" :md="12" :sm="24">
                 <a-card :hoverable="true">
                   <a-card-meta>
-                    <a slot="title">V2ray</a>
-                    <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于原版v2ray的订阅链接' : 'adapt original v2ray subscription' }}</div>
+                    <a slot="title">SS & V2ray</a>
+                    <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于原版ss和v2ray的订阅链接' : 'adapt original ss & v2ray subscription' }}</div>
                   </a-card-meta>
                   <template class="ant-card-actions" slot="actions">
                     <a-button
                       class="button-color-cyan"
-                      style="color: white;font-weight: bold;"
+                      style="width: 100%;color: white;font-weight: bold;"
+                      block
+                      v-clipboard:copy="user.subsLink + 'ss'"
+                      v-clipboard:success="onCopy"
+                      v-clipboard:error="onError"
+                    >
+                      <my-icon type="icon-ss" />
+                      {{ $i18n.locale === 'zh-CN' ? '点击复制' : 'click to copy' }}
+                    </a-button>
+                    <a-button
+                      class="button-color-cyan"
+                      style="width: 100%;color: white;font-weight: bold;"
                       block
                       v-clipboard:copy="user.subsLink + 'v2ray'"
                       v-clipboard:success="onCopy"

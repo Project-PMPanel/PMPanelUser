@@ -44,7 +44,7 @@ Vue.use(CrispChat, {
 })
 
 const MyIcon = Icon.createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2202754_vcbbp2m4oyg.js' // 在 iconfont.cn 上生成
+  scriptUrl: '//at.alicdn.com/t/font_2202754_2188nwkgdur.js' // 在 iconfont.cn 上生成
 })
 
 Vue.config.productionTip = false
