@@ -50,6 +50,9 @@ const locale = {
   'register.closeMessage': '本站已关闭注册...敬请期待',
   'register.registerBtn': '注册',
   'register.registerSuccess': '注册成功',
+  'register.tos': '服务条款',
+  'register.acceptTOS': '我已阅读并同意',
+  'register.acceptTOSInfo': '请阅读并同意服务条款',
 
   'forgot.title': '找回密码',
   'forgot.email': '邮箱',

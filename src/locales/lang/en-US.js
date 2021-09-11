@@ -50,6 +50,9 @@ const locale = {
   'register.closeMessage': 'This site has closed registration',
   'register.registerBtn': 'Register',
   'register.registerSuccess': 'Register Success',
+  'register.tos': 'Terms of service',
+  'register.acceptTOS': 'I\'ve read & accepted the ',
+  'register.acceptTOSInfo': 'Please read & accept the TOS',
 
   'forgot.title': 'Find pass',
   'forgot.email': 'Email',

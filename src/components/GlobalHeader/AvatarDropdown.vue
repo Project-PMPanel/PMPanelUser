@@ -2,7 +2,6 @@
   <a-dropdown v-if="currentUser && currentUser.name" placement="bottomRight">
     <span class="ant-pro-account-avatar">
       <!--<a-avatar size="small" src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png" class="antd-pro-global-header-index-avatar" />-->
-      <a-avatar size="small" src="/avatar.jpg" class="antd-pro-global-header-index-avatar" />
       <span>{{ currentUser.name }}</span>
     </span>
     <template v-slot:overlay>
