@@ -6,7 +6,12 @@
     <div v-else>
       <div v-if="(registerEnable && !registerInviteOnly) || (inviteCode !== undefined && inviteCode !== '' && inviteCode.length >= 4)">
         <a-form ref="formRegister" :form="form" id="formRegister">
-          <a-form-item>
+          <a-form-item v-if="!emailSuffix">
+            <a-input type="text" :placeholder="$t('register.email')" v-decorator="['email', {rules: [{ required: true, type: 'email', message: $t('register.emailMessage') }], validateTrigger: ['change', 'blur']}]">
+              <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
+            </a-input>
+          </a-form-item>
+          <a-form-item v-else>
             <a-input type="text" :placeholder="$t('register.email')" v-decorator="['email', {rules: [{ required: true, message: $t('register.emailMessage') }], validateTrigger: ['change', 'blur']}]">
               <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
               <a-select slot="addonAfter" v-model="emailSuffix" style="width: 120px" @change="onChange">
@@ -398,8 +403,12 @@ export default {
       this.emailEnable = true
     }
     this.emailList = result.data.emailList
-    this.emailSuffix = this.emailList[0]
     console.log(this.emailList)
+    if (this.emailList[0] === '' || this.emailList === undefined || this.emailList === null) {
+      this.emailSuffix = undefined
+    } else {
+      this.emailSuffix = this.emailList[0]
+    }
     // 获取url的参数,设置aff到cookie
     if (this.$route.params.inviteCode === undefined) {
       if (this.registerInviteOnly) {
