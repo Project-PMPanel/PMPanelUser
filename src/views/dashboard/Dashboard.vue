@@ -302,7 +302,7 @@ export default {
     }),
     currentUser () {
       return {
-        avatar: '/avatar.jpg'
+        avatar: ''
       }
     },
     userInfo () {
