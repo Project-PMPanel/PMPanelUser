@@ -51,7 +51,7 @@ const locale = {
   'register.registerBtn': 'Register',
   'register.registerSuccess': 'Register Success',
   'register.tos': 'Terms of service',
-  'register.acceptTOS': 'I\'ve read & accepted the ',
+  'register.acceptTOS': 'I\'ve read the ',
   'register.acceptTOSInfo': 'Please read & accept the TOS',
 
   'forgot.title': 'Find pass',

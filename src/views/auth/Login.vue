@@ -1,16 +1,16 @@
 <template>
   <div class="main">
     <a-form id="formLogin" class="user-layout-login" ref="formLogin" :form="form" @submit="handleSubmit">
-      <div style="margin-top: 30px">
+      <div>
         <a-alert v-if="isLoginError" type="error" showIcon style="margin-bottom: 24px;" :message="$t('login.failed')" />
         <a-form-item>
-          <a-input size="large" type="text" :placeholder="$t('login.email')" v-decorator="['username', {rules: [{ required: true, type: 'email', message: $t('register.emailMessage') }], validateTrigger: ['change', 'blur']}]">
+          <a-input type="text" :placeholder="$t('login.email')" v-decorator="['username', {rules: [{ required: true, type: 'email', message: $t('register.emailMessage') }], validateTrigger: ['change', 'blur']}]">
             <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
           </a-input>
         </a-form-item>
 
         <a-form-item>
-          <a-input-password size="large" :placeholder="$t('register.password')" v-decorator="['password',{rules: [{ required: true, message: $t('login.passwordMessage') }], validateTrigger: 'blur'}]">
+          <a-input-password :placeholder="$t('register.password')" v-decorator="['password',{rules: [{ required: true, message: $t('login.passwordMessage') }], validateTrigger: 'blur'}]">
             <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
           </a-input-password>
         </a-form-item>
@@ -22,9 +22,9 @@
         <router-link :to="{ path:'/auth/register' }" class="register" style="margin-right: 10px;float: right;"> {{ $t('login.register') }} </router-link>
       </a-form-item>
 
-      <a-form-item style="margin-top:24px">
+      <a-form-item>
         <a-button
-          size="large"
+          size="small"
           type="primary"
           htmlType="submit"
           class="login-button"
@@ -39,7 +39,6 @@
             <a-icon class="item-icon" type="google" @click="signWithGoogle"></a-icon>
           </a>
         </div>
-        <select-lang style="margin-top: -20px;float: right" />
       </div>
     </a-form>
   </div>
@@ -232,18 +231,18 @@ export default {
   }
 
   button.login-button {
-    padding: 0 15px;
     font-size: 16px;
-    height: 40px;
+    height: 30px;
     width: 100%;
+    border-radius: 4px;
   }
 
   .user-login-other {
     text-align: left;
-    margin-top: 24px;
-    line-height: 22px;
+    height: 24px;
     .item-icon {
       font-size: 24px;
+      line-height: 24px;
       color: rgba(0, 0, 0, 0.2);
       margin-left: 16px;
       vertical-align: middle;

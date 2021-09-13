@@ -4,17 +4,12 @@
       <a-spin size="large" tip="Loading..." :spinning="loading"/>
     </div>
     <div v-else>
-      <h3 style="margin-top:8px;text-align: center"><span>{{ $t('register.title') }}</span></h3>
       <div v-if="(registerEnable && !registerInviteOnly) || (inviteCode !== undefined && inviteCode !== '' && inviteCode.length >= 4)">
         <a-form ref="formRegister" :form="form" id="formRegister">
           <a-form-item>
-            <a-input
-              size="large"
-              type="text"
-              :placeholder="$t('register.email')"
-              v-decorator="['email', {rules: [{ required: true, message: $t('register.emailMessage') }], validateTrigger: ['change', 'blur']}]">
+            <a-input type="text" :placeholder="$t('register.email')" v-decorator="['email', {rules: [{ required: true, message: $t('register.emailMessage') }], validateTrigger: ['change', 'blur']}]">
               <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-              <a-select slot="addonAfter" style="width: 130px" @change="onChange">
+              <a-select slot="addonAfter" v-model="emailSuffix" style="width: 120px" @change="onChange">
                 <a-select-option :value="item" :key="index" v-for="(item, index) in emailList" >
                   {{ item }}
                 </a-select-option>
@@ -22,11 +17,7 @@
             </a-input>
           </a-form-item>
 
-          <a-popover
-            placement="rightTop"
-            :trigger="['focus']"
-            :getPopupContainer="(trigger) => trigger.parentElement"
-            v-model="state.passwordLevelChecked">
+          <a-popover placement="rightTop" :trigger="['focus']" :getPopupContainer="(trigger) => trigger.parentElement" v-model="state.passwordLevelChecked">
             <template slot="content">
               <div :style="{ width: '240px' }">
                 <div :class="['user-register', passwordLevelClass]"> {{ $t('register.passwordStrength') }}
@@ -38,33 +29,20 @@
               </div>
             </template>
             <a-form-item>
-              <a-input-password
-                size="large"
-                :placeholder="$t('register.password')"
-                @click="handlePasswordInputClick"
-                v-decorator="['password', {rules: [{ required: true, message: $t('register.passwordMessage') }, { validator: this.handlePasswordLevel }], validateTrigger: ['change', 'blur']}]"
-              >
+              <a-input-password :placeholder="$t('register.password')" @click="handlePasswordInputClick" v-decorator="['password', {rules: [{ required: true, message: $t('register.passwordMessage') }, { validator: this.handlePasswordLevel }], validateTrigger: ['change', 'blur']}]">
                 <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
               </a-input-password>
             </a-form-item>
           </a-popover>
 
           <a-form-item>
-            <a-input-password
-              size="large"
-              :placeholder="$t('register.repassword')"
-              v-decorator="['password2', {rules: [{ required: true, message: $t('register.passwordMessage') }, { validator: this.handlePasswordCheck }], validateTrigger: ['change', 'blur']}]"
-            >
+            <a-input-password :placeholder="$t('register.repassword')" v-decorator="['password2', {rules: [{ required: true, message: $t('register.passwordMessage') }, { validator: this.handlePasswordCheck }], validateTrigger: ['change', 'blur']}]">
               <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
             </a-input-password>
           </a-form-item>
 
           <a-form-item v-if="inviteCode !== undefined && inviteCode !== '' && inviteCode.length >= 4">
-            <a-input
-              size="large"
-              :placeholder="$t('register.inviteCode') + ': ' + inviteCode"
-              disabled
-            >
+            <a-input :placeholder="$t('register.inviteCode') + ': ' + inviteCode"disabled>
               <a-icon slot="prefix" type="smile" :style="{ color: 'rgba(0,0,0,.25)' }"/>
             </a-input>
           </a-form-item>
@@ -72,22 +50,13 @@
           <a-row :gutter="16" v-if="emailEnable">
             <a-col class="gutter-row" :span="16">
               <a-form-item>
-                <a-input
-                  size="large"
-                  type="text"
-                  :placeholder="$t('register.checkCode')"
-                  v-decorator="['checkCode', {rules: [{ required: true, message: $t('register.checkCodeMessage') }], validateTrigger: 'blur'}]">
+                <a-input type="text" :placeholder="$t('register.checkCode')" v-decorator="['checkCode', {rules: [{ required: true, message: $t('register.checkCodeMessage') }], validateTrigger: 'blur'}]">
                   <a-icon slot="prefix" type="code" :style="{ color: 'rgba(0,0,0,.25)' }"/>
                 </a-input>
               </a-form-item>
             </a-col>
-            <a-col class="gutter-row" :span="8">
-              <a-button
-                class="getCaptcha"
-                size="large"
-                :disabled="state.smsSendBtn"
-                @click.stop.prevent="getCaptcha"
-                v-text="!state.smsSendBtn && $t('register.getCheckCode')||(count+' s')"></a-button>
+            <a-col class="gutter-row" :span="8" style="padding-left: 0">
+              <a-button size="small" class="getCaptcha" :disabled="state.smsSendBtn" @click.stop.prevent="getCaptcha" v-text="!state.smsSendBtn && $t('register.getCheckCode')||(count+' s')"></a-button>
             </a-col>
           </a-row>
 
@@ -333,13 +302,14 @@
 
           <a-form-item>
             <a-button
-              size="large"
+              size="small"
               type="primary"
               htmlType="submit"
               class="register-button"
               :loading="registerBtn"
               @click.stop.prevent="handleSubmit"
-              :disabled="registerBtn"> {{ $t('register.registerBtn') }}
+              :disabled="registerBtn">
+              {{ $t('register.registerBtn') }}
             </a-button>
             <router-link class="login" :to="{ name: 'login' }"> {{ $t('login.loginBtn') }}</router-link>
           </a-form-item>
@@ -351,7 +321,6 @@
       <div v-else>
         <h2 style="text-align: center"> {{ $t('register.closeMessage') }} </h2>
       </div>
-      <select-lang style="margin-top: -20px;float: right" />
     </div>
   </div>
 </template>
@@ -628,13 +597,17 @@ export default {
   }
 
   .getCaptcha {
-    display: block;
-    width: 100%;
-    height: 40px;
+    height: 32px;
+    margin-top: 3px;
+    text-align: center;
+    float: right;
   }
 
   .register-button {
-    width: 50%;
+    font-size: 16px;
+    height: 30px;
+    width: 100%;
+    border-radius: 4px;
   }
 
   .login {

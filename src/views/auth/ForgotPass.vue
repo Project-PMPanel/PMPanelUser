@@ -1,80 +1,69 @@
 <template>
   <div class="main user-layout-register">
-    <h3 style="margin-top:8px;text-align: center"><span>{{ $t('forgot.title') }}</span></h3>
-    <a-form ref="formRegister" :form="form" id="formRegister">
-      <a-form-item>
-        <a-input
-          size="large"
-          type="text"
-          :placeholder="$t('forgot.email')"
-          v-decorator="['email', {rules: [{ required: true, type: 'email', message: $t('forgot.emailMessage') }], validateTrigger: ['change', 'blur']}]">
-          <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-        </a-input>
-      </a-form-item>
-
-      <a-row :gutter="16">
-        <a-col class="gutter-row" :span="16">
-          <a-form-item>
-            <a-input
-              size="large"
-              type="text"
-              :placeholder="$t('forgot.checkCode')"
-              v-decorator="['checkCode', {rules: [{ required: true, message: $t('forgot.checkCodeMessage') }], validateTrigger: 'blur'}]">
-              <a-icon slot="prefix" type="code" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-            </a-input>
-          </a-form-item>
-        </a-col>
-        <a-col class="gutter-row" :span="8">
-          <a-button
-            class="getCaptcha"
-            size="large"
-            :disabled="state.smsSendBtn"
-            @click.stop.prevent="getCaptcha"
-            v-text="!state.smsSendBtn && $t('forgot.getCheckCode')||(count+' s')"></a-button>
-        </a-col>
-      </a-row>
-
-      <a-popover
-        placement="rightTop"
-        :trigger="['focus']"
-        :getPopupContainer="(trigger) => trigger.parentElement"
-        v-model="state.passwordLevelChecked">
-        <template slot="content">
-          <div :style="{ width: '240px' }">
-            <div :class="['user-register', passwordLevelClass]"> {{ $t('forgot.passwordStrength') }}
-              ：<span>{{ passwordLevelName }}</span></div>
-            <a-progress :percent="state.percent" :showInfo="false" :strokeColor=" passwordLevelColor "/>
-            <div style="margin-top: 10px;">
-              <span>{{ $t('forgot.passwordStrengthMessage') }}</span>
-            </div>
-          </div>
-        </template>
+    <div>
+      <a-form ref="formRegister" :form="form" id="formRegister">
         <a-form-item>
-          <a-input-password
-            size="large"
-            :placeholder="$t('forgot.password')"
-            @click="handlePasswordInputClick"
-            v-decorator="['password', {rules: [{ required: true, message: $t('forgot.passwordMessage') }, { validator: this.handlePasswordLevel }], validateTrigger: ['change', 'blur']}]"
-          >
-            <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-          </a-input-password>
+          <a-input
+            type="text"
+            :placeholder="$t('forgot.email')"
+            v-decorator="['email', {rules: [{ required: true, type: 'email', message: $t('forgot.emailMessage') }], validateTrigger: ['change', 'blur']}]">
+            <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
+          </a-input>
         </a-form-item>
-      </a-popover>
 
-      <a-form-item>
-        <a-button
-          size="large"
-          type="primary"
-          htmlType="submit"
-          class="forgot-button"
-          :loading="forgotBtn"
-          @click.stop.prevent="handleSubmit"
-          :disabled="forgotBtn"> {{ $t('forgot.forgotBtn') }}
-        </a-button>
-        <router-link class="login" :to="{ name: 'login' }"> {{ $t('login.loginBtn') }}</router-link>
-      </a-form-item>
-      <select-lang style="margin-top: -20px;float: right" />
-    </a-form>
+        <a-row :gutter="16">
+          <a-col class="gutter-row" :span="16">
+            <a-form-item>
+              <a-input type="text" :placeholder="$t('forgot.checkCode')" v-decorator="['checkCode', {rules: [{ required: true, message: $t('forgot.checkCodeMessage') }], validateTrigger: 'blur'}]">
+                <a-icon slot="prefix" type="code" :style="{ color: 'rgba(0,0,0,.25)' }"/>
+              </a-input>
+            </a-form-item>
+          </a-col>
+          <a-col class="gutter-row" :span="8" style="padding-left: 0">
+            <a-button class="getCaptcha" size="small" :disabled="state.smsSendBtn" @click.stop.prevent="getCaptcha" v-text="!state.smsSendBtn && $t('forgot.getCheckCode')||(count+' s')"></a-button>
+          </a-col>
+        </a-row>
+
+        <a-popover
+          placement="rightTop"
+          :trigger="['focus']"
+          :getPopupContainer="(trigger) => trigger.parentElement"
+          v-model="state.passwordLevelChecked">
+          <template slot="content">
+            <div :style="{ width: '240px' }">
+              <div :class="['user-register', passwordLevelClass]"> {{ $t('forgot.passwordStrength') }}
+                ：<span>{{ passwordLevelName }}</span></div>
+              <a-progress :percent="state.percent" :showInfo="false" :strokeColor=" passwordLevelColor "/>
+              <div style="margin-top: 10px;">
+                <span>{{ $t('forgot.passwordStrengthMessage') }}</span>
+              </div>
+            </div>
+          </template>
+          <a-form-item>
+            <a-input-password
+              :placeholder="$t('forgot.password')"
+              @click="handlePasswordInputClick"
+              v-decorator="['password', {rules: [{ required: true, message: $t('forgot.passwordMessage') }, { validator: this.handlePasswordLevel }], validateTrigger: ['change', 'blur']}]"
+            >
+              <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
+            </a-input-password>
+          </a-form-item>
+        </a-popover>
+
+        <a-form-item>
+          <a-button
+            size="small"
+            type="primary"
+            htmlType="submit"
+            class="forgot-button"
+            :loading="forgotBtn"
+            @click.stop.prevent="handleSubmit"
+            :disabled="forgotBtn"> {{ $t('forgot.forgotBtn') }}
+          </a-button>
+          <router-link class="login" :to="{ name: 'login' }"> {{ $t('login.loginBtn') }}</router-link>
+        </a-form-item>
+      </a-form>
+    </div>
   </div>
 </template>
 
@@ -275,13 +264,17 @@ export default {
   }
 
   .getCaptcha {
-    display: block;
-    width: 100%;
-    height: 40px;
+    height: 32px;
+    margin-top: 3px;
+    text-align: center;
+    float: right;
   }
 
   .forgot-button {
-    width: 50%;
+    font-size: 16px;
+    height: 30px;
+    width: 100%;
+    border-radius: 4px;
   }
 
   .login {

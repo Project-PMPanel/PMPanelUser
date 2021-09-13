@@ -1,16 +1,13 @@
 <template>
   <div id="userLayout" :class="['user-layout-wrapper', isMobile && 'mobile']">
-    <select-lang style="float: right" />
     <div class="container">
-      <div class="top">
-        <div class="header">
-          <a href="/">
-            <span class="title"> {{ this.title }} </span>
-          </a>
-        </div>
+      <div>
+        <a-card class="container-wrap">
+          <span class="title"> {{ this.title }} </span>
+          <select-lang style="float: right" />
+          <router-view />
+        </a-card>
       </div>
-
-      <router-view />
 
       <div class="footer">
         <div class="links">
@@ -86,11 +83,35 @@ export default {
     min-height: 100%;
     background: #f0f2f5 url(~@/assets/background.svg) no-repeat 50%;
     background-size: 100%;
-    padding: 110px 0 144px;
-    position: relative;
+    display:flex;
+    justify-content:center;  //子元素水平居中
+    align-items:center;      //子元素垂直居中
+
+    /deep/ .ant-form-item{
+      margin-bottom: 10px;
+    }
 
     a {
       text-decoration: none;
+    }
+
+    .container-wrap {
+      width: 320px;
+      border-radius: 4px;
+    }
+
+    .title {
+      text-align: center;
+      vertical-align: text-bottom;
+      font-size: 30px;
+      display: inline-block;
+      font-weight: 600;
+      color: #1790fe;
+      background-image: linear-gradient(
+        -20deg
+        ,#6e45e2,#88d3ce);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
     }
 
     .top {
@@ -122,9 +143,6 @@ export default {
     }
 
     .main {
-      min-width: 260px;
-      width: 368px;
-      margin: 0 auto;
     }
 
     .footer {
