@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     bindTG () {
-      const url = 'https://t.me/' + this.botUsername + '?start=' + this.user.uuid
+      const url = 'https://t.me/' + this.botUsername + '?start=' + this.user.passwd
       window.location.href = url
     },
     async unBindTG () {
