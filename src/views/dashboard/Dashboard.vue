@@ -146,17 +146,34 @@
                     <div class="meta-content" slot="description">{{ $i18n.locale === 'zh-CN' ? '适用于原版ss和v2ray的订阅链接' : 'adapt original ss & v2ray subscription' }}</div>
                   </a-card-meta>
                   <template class="ant-card-actions" slot="actions">
-                    <a-button
-                      class="button-color-cyan"
-                      style="width: 100%;color: white;font-weight: bold;"
-                      block
-                      v-clipboard:copy="user.subsLink + 'ss'"
-                      v-clipboard:success="onCopy"
-                      v-clipboard:error="onError"
-                    >
-                      <my-icon type="icon-ss" />
-                      {{ $i18n.locale === 'zh-CN' ? '点击复制' : 'click to copy' }}
-                    </a-button>
+                    <a-dropdown :trigger="['click']">
+                      <template #overlay>
+                        <a-menu>
+                          <a-menu-item
+                            key="sip002"
+                            v-clipboard:copy="user.subsLink + 'sip002'"
+                            v-clipboard:success="onCopy"
+                            v-clipboard:error="onError">
+                            SIP002(old)
+                          </a-menu-item>
+                          <a-menu-item
+                            key="sip008"
+                            v-clipboard:copy="user.subsLink + 'sip008'"
+                            v-clipboard:success="onCopy"
+                            v-clipboard:error="onError">
+                            SIP008(new)
+                          </a-menu-item>
+                        </a-menu>
+                      </template>
+                      <a-button
+                        class="button-color-cyan"
+                        style="width: 100%;color: white;font-weight: bold;"
+                        block
+                      >
+                        <my-icon type="icon-ss" />
+                        {{ $i18n.locale === 'zh-CN' ? '选择ss规范' : 'choose version' }}
+                      </a-button>
+                    </a-dropdown>
                     <a-button
                       class="button-color-cyan"
                       style="width: 100%;color: white;font-weight: bold;"
@@ -415,195 +432,195 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  @import "./Dashboard.less";
+@import "./Dashboard.less";
 
-  .project-list {
+.project-list {
 
-    .card-title {
-      font-size: 0;
-
-      a {
-        color: rgba(0, 0, 0, 0.85);
-        margin-left: 12px;
-        line-height: 24px;
-        height: 24px;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 14px;
-
-        &:hover {
-          color: #1890ff;
-        }
-      }
-    }
-
-    .card-description {
-      color: rgba(0, 0, 0, 0.45);
-      height: 44px;
-      line-height: 22px;
-      overflow: hidden;
-    }
-
-    .project-item {
-      display: flex;
-      margin-top: 8px;
-      overflow: hidden;
-      font-size: 12px;
-      height: 20px;
-      line-height: 20px;
-
-      a {
-        color: rgba(0, 0, 0, 0.45);
-        display: inline-block;
-        flex: 1 1 0;
-
-        &:hover {
-          color: #1890ff;
-        }
-      }
-
-      .datetime {
-        color: rgba(0, 0, 0, 0.25);
-        flex: 0 0 auto;
-        float: right;
-      }
-    }
-
-    .ant-card-meta-description {
-      color: rgba(0, 0, 0, 0.45);
-      height: 44px;
-      line-height: 22px;
-      overflow: hidden;
-    }
-  }
-
-  .item-group {
-    padding: 20px 0 8px 24px;
+  .card-title {
     font-size: 0;
 
     a {
-      color: rgba(0, 0, 0, 0.65);
-      display: inline-block;
-      font-size: 14px;
-      margin-bottom: 13px;
-      width: 25%;
-    }
-  }
-
-  .members {
-    a {
-      display: block;
-      margin: 12px 0;
+      color: rgba(0, 0, 0, 0.85);
+      margin-left: 12px;
       line-height: 24px;
       height: 24px;
-
-      .member {
-        font-size: 14px;
-        color: rgba(0, 0, 0, .65);
-        line-height: 24px;
-        max-width: 100px;
-        vertical-align: top;
-        margin-left: 12px;
-        transition: all 0.3s;
-        display: inline-block;
-      }
+      display: inline-block;
+      vertical-align: top;
+      font-size: 14px;
 
       &:hover {
-        span {
-          color: #1890ff;
-        }
+        color: #1890ff;
       }
     }
   }
 
-  .mobile {
+  .card-description {
+    color: rgba(0, 0, 0, 0.45);
+    height: 44px;
+    line-height: 22px;
+    overflow: hidden;
+  }
 
-    .project-list {
+  .project-item {
+    display: flex;
+    margin-top: 8px;
+    overflow: hidden;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
 
-      .project-card-grid {
-        width: 100%;
+    a {
+      color: rgba(0, 0, 0, 0.45);
+      display: inline-block;
+      flex: 1 1 0;
+
+      &:hover {
+        color: #1890ff;
       }
     }
 
-    .more-info {
-      border: 0;
-      padding-top: 16px;
-      margin: 16px 0 16px;
-    }
-
-    .headerContent .title .welcome-text {
-      display: none;
+    .datetime {
+      color: rgba(0, 0, 0, 0.25);
+      flex: 0 0 auto;
+      float: right;
     }
   }
 
-  /deep/ .ant-card-body {
-    padding: 5px 24px 5px 5px;
+  .ant-card-meta-description {
+    color: rgba(0, 0, 0, 0.45);
+    height: 44px;
+    line-height: 22px;
+    overflow: hidden;
   }
+}
 
-  /deep/ .ant-tabs-nav .ant-tabs-tab {
-    padding: 0;
-  }
-  .listContent {
-    max-width: 142px;
-    width: 90%;
-    cursor: pointer;
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 8px;
-  }
+.item-group {
+  padding: 20px 0 8px 24px;
+  font-size: 0;
 
-  .listStyle {
-    border-radius: 16px;
-    height: 30px;
-    transition: box-shadow .5s, transform .5s;
-  }
-
-  .listIcon {
-    width: 20%;
+  a {
+    color: rgba(0, 0, 0, 0.65);
     display: inline-block;
-    text-align: center;
-    font-size: 16px;
-    line-height: 30px;
-    vertical-align: top;
+    font-size: 14px;
+    margin-bottom: 13px;
+    width: 25%;
   }
-  .listText {
-    width: 80%;
-    line-height: 30px;
-    display: inline-block;
-    h1 {
-      color: #fff
+}
+
+.members {
+  a {
+    display: block;
+    margin: 12px 0;
+    line-height: 24px;
+    height: 24px;
+
+    .member {
+      font-size: 14px;
+      color: rgba(0, 0, 0, .65);
+      line-height: 24px;
+      max-width: 100px;
+      vertical-align: top;
+      margin-left: 12px;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    &:hover {
+      span {
+        color: #1890ff;
+      }
+    }
+  }
+}
+
+.mobile {
+
+  .project-list {
+
+    .project-card-grid {
+      width: 100%;
     }
   }
 
-  .shadowrocket {
-    background: #4444f5;
+  .more-info {
+    border: 0;
+    padding-top: 16px;
+    margin: 16px 0 16px;
   }
 
-  .clash {
-    padding-left: 22%;
-    background: #1890ff;
+  .headerContent .title .welcome-text {
+    display: none;
   }
+}
 
-  .surge {
-    padding-left: 22%;
-    background: #a465fa;
-  }
+/deep/ .ant-card-body {
+  padding: 5px 24px 5px 5px;
+}
 
-  /deep/ .ant-tabs-bar {
-    border-bottom: none;
-  }
+/deep/ .ant-tabs-nav .ant-tabs-tab {
+  padding: 0;
+}
+.listContent {
+  max-width: 142px;
+  width: 90%;
+  cursor: pointer;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 8px;
+}
 
-  /deep/ .ant-tabs-nav .ant-tabs-tab .anticon {
-    margin-right: 0;
-    font-size: 18px;
-  }
+.listStyle {
+  border-radius: 16px;
+  height: 30px;
+  transition: box-shadow .5s, transform .5s;
+}
 
-  /deep/ .ant-tabs-nav .ant-tabs-tab {
-    margin-right: 15px;
+.listIcon {
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  line-height: 30px;
+  vertical-align: top;
+}
+.listText {
+  width: 80%;
+  line-height: 30px;
+  display: inline-block;
+  h1 {
+    color: #fff
   }
+}
 
-  /deep/ .ant-tabs-ink-bar {
-    width: 0!important;
-  }
+.shadowrocket {
+  background: #4444f5;
+}
+
+.clash {
+  padding-left: 22%;
+  background: #1890ff;
+}
+
+.surge {
+  padding-left: 22%;
+  background: #a465fa;
+}
+
+/deep/ .ant-tabs-bar {
+  border-bottom: none;
+}
+
+/deep/ .ant-tabs-nav .ant-tabs-tab .anticon {
+  margin-right: 0;
+  font-size: 18px;
+}
+
+/deep/ .ant-tabs-nav .ant-tabs-tab {
+  margin-right: 15px;
+}
+
+/deep/ .ant-tabs-ink-bar {
+  width: 0!important;
+}
 
 </style>
