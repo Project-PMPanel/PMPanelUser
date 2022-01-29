@@ -11,6 +11,10 @@
             <span style="margin-right: 5px">{{ $t('funds.withdraw') }}</span>
             <a-tooltip>
               <template slot="title">
+                <span>
+                  {{ $i18n.locale === 'zh-CN' ? minWithdraw + ' CNY起' : 'At least ' + minWithdraw + 'CNY' }}
+                </span>
+                ,
                 <span v-if="withdrawRate === 0">
                   {{ $i18n.locale === 'zh-CN' ? '免提现手续费' : 'No withdrawal fee' }}
                 </span>
@@ -82,6 +86,7 @@ export default {
       pageSize: 5,
       total: 0,
       enableWithdraw: false,
+      minWithdraw: 0,
       withdrawRate: 0,
       amount: 0,
       account: '',
@@ -106,6 +111,7 @@ export default {
         this.total = result.data.funds.totalCount
         this.withdrawRate = result.data.funds.withdrawRate
         this.enableWithdraw = result.data.funds.enableWithdraw
+        this.minWithdraw = result.data.funds.minWithdraw
         console.log(result.data.funds)
         this.loading = false
       }
