@@ -182,6 +182,7 @@ const locale = {
   'checkout.order.success': '请尽快付款',
   'checkout.order.info': '付款后若页面没有跳转,请刷新页面',
   'checkout.order.choosePayType': '请选择支付方式',
+  'checkout.order.moneyError': '余额不足',
   'checkout.order.payType.money': '余额',
   'checkout.order.payType.alipay': '支付宝',
   'checkout.order.payType.wxpay': '微信支付',

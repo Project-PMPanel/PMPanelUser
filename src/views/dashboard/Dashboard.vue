@@ -13,7 +13,7 @@
         </div>
       </div>
     </template>
-    <div v-if="user.remainTraffic" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
+    <div v-if="$moment().isBefore($moment(user.expireIn)) && user.remainTraffic" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">
       {{ this.$i18n.locale === 'zh-CN' ? '流量已不足30%' : 'Low flow' }} -> <router-link to="/plan/index">{{ this.$i18n.locale === 'zh-CN' ? '购买流量包' : 'Buy Traffic Package' }}</router-link>
     </div>
     <div v-if="$moment(user.expireIn).isBefore($moment().add(3, 'days')) && $moment(user.expireIn).isAfter($moment())" style="height: 50px;margin-bottom:24px;border-radius: 5px;background: rgb(240 20 20 / 20%);text-align: center;font-size: 20px;line-height: 50px">

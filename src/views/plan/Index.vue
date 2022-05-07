@@ -495,6 +495,8 @@ export default {
         if (result.code === 200) {
           this.packageLoading = false
           this.$router.push('/checkout/package/' + result.data.package.id)
+        } else {
+          this.packageLoading = false
         }
       } else {
         this.packageModalVisible = false
